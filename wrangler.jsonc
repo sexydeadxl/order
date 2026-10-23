@@ -1,0 +1,11 @@
+{
+  "name": "orderflow-database",
+  "account_id": "7bcbe6b2e68e329b6de8d0005b0c96dd",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-10-23",
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "orderflow",
+    "database_id": "4680a988-a5c6-424b-aee6-46e8a80596d4"
+  }]
+}

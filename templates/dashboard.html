@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block c %}
+<h1>Dashboard</h1><p>Delivery reminders start when 3 days remain. Orders due in 2 days or less are highlighted red.</p>
+<div class="cards"><div class="card"><small>Total Orders</small><b>{{orders|length}}</b></div><div class="card"><small>Processing</small><b>{{processing}}</b></div><div class="card"><small>Ready</small><b>{{ready}}</b></div>{% if pending_pay is not none %}<div class="card"><small>Payments Pending (separate)</small><b>₹{{"%.2f"|format(pending_pay)}}</b></div>{% endif %}</div>
+<h2>Delivery Alerts (3 days or less)</h2>
+{% if not urgent %}<div class="card">No orders are approaching their delivery dates.</div>{% endif %}
+{% for o in urgent %}<div class="card delivery {{o.priority}}"><strong>{{o.customer.name}} · {{o.product_name}}</strong> · Remaining {{o.remaining_dispatch}} · {{o.expected_date.strftime('%d %b %Y')}}<br>{% if o.days_left<0 %}OVERDUE by {{-o.days_left}} day(s){% elif o.days_left==0 %}DUE TODAY{% else %}{{o.days_left}} day(s) remaining{% endif %} · {{o.production_status}} · {{o.sale_status}}</div>{% endfor %}
+<h2>All Upcoming Deliveries</h2><div class="card"><table><tr><th>Party</th><th>Product</th><th>Qty</th><th>Delivery Date</th><th>Days Remaining</th><th>Status</th></tr>{% for o in active %}<tr><td>{{o.customer.name}}</td><td>{{o.product_name}}</td><td>{{o.remaining_dispatch}}</td><td>{{o.expected_date or 'Not set'}}</td><td>{{o.days_left if o.days_left is not none else '—'}}</td><td>{{o.production_status}}</td></tr>{% endfor %}</table></div>
+{% endblock %}

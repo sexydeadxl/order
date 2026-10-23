@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+.wrangler/
+.vercel/
+.venv/
+__pycache__/
+instance/
+*.db
+*.sqlite
+*.sqlite3

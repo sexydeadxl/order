@@ -1,0 +1,1 @@
+{% extends "base.html" %}{% block c %}<form class="card login" method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><h1>OrderFlow</h1><label>Username<input name="username"></label><label>Password<input type="password" name="password"></label><button>Login</button><p>Contact your administrator for account access.</p></form>{% endblock %}
